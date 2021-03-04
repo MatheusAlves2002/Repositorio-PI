@@ -1,0 +1,28 @@
+O agricultor acredita que a produtividade média deve ficar entre 650 a 750 sacas por hectare, resultado que está dentro da média esperada. 
+
+O Brasil joga no lixo todo ano mais de 380 mil toneladas de batatas.
+
+O Brasil produz 3.851.396 toneladas de batata por ano.
+
+
+	3.851.396 toneladas -> 100%
+  	  380.000 toneladas -> x
+
+	x = 9.8
+
+aproximadamente 10% da produção é desperdiçada
+54% do desperdício é causado por problemas na produção, manipulação pós colheita e no armazanamento do produto.
+
+logo, em média, 5.4% da produção é desperdiçada.
+
+cada hectare pode gerar 25 toneladas de batata.
+
+1kg de batata                       ->    R$ 6,00
+25.000 kg (produção por hectare)    ->    R$ 150,00
+
+fontes:
+http://revistaplasticultura.com.br/desperdicio-de-alimentos-no-brasil/#:~:text=O%20Brasil%20joga%20no%20lixo,produ%C3%A7%C3%A3o%20e%20o%20consumo%2C%20etc.
+
+https://www.atlasbig.com/pt-br/paises-por-producao-de-batata
+
+https://wikifarmer.com/pt-br/colheita-armazenamento-da-batata-producao-de-batata-por-hectare/
