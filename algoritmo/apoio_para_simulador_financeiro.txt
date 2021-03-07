@@ -24,8 +24,8 @@ logo, em média, 5.4% da produção é desperdiçada.
 cada hectare pode gerar 25 toneladas de batata.
 
 1kg de batata                       ->    R$ 6,00
-1000kg								-> 	  R$ 6000
-25.000 kg (produção por hectare)    ->    R$ 150000
+1000kg								-> 	  R$ 6000,00
+25.000 kg (produção por hectare)    ->    R$ 150000,00
 
 fontes:
 http://revistaplasticultura.com.br/desperdicio-de-alimentos-no-brasil/#:~:text=O%20Brasil%20joga%20no%20lixo,produ%C3%A7%C3%A3o%20e%20o%20consumo%2C%20etc.
