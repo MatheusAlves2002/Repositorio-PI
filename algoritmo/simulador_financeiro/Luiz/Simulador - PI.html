@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body style="background-color:rgb(48, 52, 67); color: whitesmoke; font-size: 30px;">
+    <br>
+<center>
+    <h1 style="font-size: 72px; color: rgb(65, 200, 100);">Simulador Financeiro da VegCare</h1>
+    <h2 style="font-size: 40px; color: rgb(65, 200, 100);">Quantos hectares de batata inglesa você plantará?</h2>
+    
+    <input id="hectares_de_batata" placeholder="Quantidade de Hectares" style="height: 50px; text-align: center; font-size: 18px;"><br><br>
+    
+    <button onclick="simular()" style="height: 50px; width: 227px; font-size: 18px;">Simular</button><br><br>
+    
+    <div id="resultado_sem_vegCare"></div><br>
+
+    <div id="resultado_com_vegCare"></div><br>
+    
+
+
+</center>
+
+</body>
+</html>
+
+<script>
+    function simular(){
+    
+    //valores gerais
+    var hectares = Number(hectares_de_batata.value) //Hectares disponíveis para plantação
+    var batHec = hectares*25 //Quantas toneladas de batatam podem ser plantadas nos hectares
+    var batValTotal = batHec*6000 //Quanto vale 100% da plantação
+
+    //valores sem vegcare
+    var batVal90pct = batValTotal*0.9 //Quanto vale 90% da plantação
+    var desperdicio = batHec*0.1 //Quanto vai ser desperdiçado
+    var batValDesper = desperdicio*6000 // Valor desperdiçado
+    
+    //valores com vegCare 
+    var batVal96pct = batValTotal*0.96
+    var desperdicioVegCare = batHec*0.04
+    var batValDesperVegCare = desperdicioVegCare*6000
+
+    /*
+                                            AVISO!
+        
+        Aqui eu usei 2 comandos novos que eu aprendi (às 00:40, então talvez eu acabe esquecendo, por isso tô colocando esse aviso), sendo eles o "padding" e o "max-height"
+
+        padding: É o responsável por dar o espaçamento do texto da div (entre o topo e o fundo e direita e esquerda da div. Estrutura: padding: espaçamentoAltura% espaçamentoLargura%
+
+        max-height: Como o nome sugere, estabelece um tamanho máximo para a div, assim, eu consigo deixar a div ficar do tamanho que ela precisar (até o limite, claro), sem bagunçar o site
+
+
+    */
+
+    resultado_sem_vegCare.innerHTML = `
+    
+    Sem VegCare <br>
+
+    Em ${hectares} hectares é possível plantar <b style="color: green;">${batHec} toneladas</b> de batata inglesa, que valem <b style="color: green;">R$ ${batValTotal}</b>.<br>
+    Porém, sem o monitoramento de temperatura do ar e umidade do solo, é possível ocorrer a perda de <b style="color: red;">${desperdicio} toneladas</b>, que valem <b style="color: red;">R$ ${batValDesper}</b><br><br>  
+    
+    <div style="width:100vw; background-color: seagreen; height:30px; padding: 3%;">Total plantado: ${batHec} hectares (R$ ${batValTotal})</div>
+    
+    <div style="width:90vw;background-color: rgb(20, 95, 145); height:30px; padding: 3%;">Colheita Útil: ${batHec*0.9} hectares (R$ ${batVal90pct})</div>
+    
+    <div style="width:10vw;background-color: red; max-height:200px;">Desperdício: ${desperdicio} hectares (R$ ${batValDesper})</div><br>
+    `
+
+    resultado_com_vegCare.innerHTML = `
+    Usando VegCare, seu desperdício cai em até 60% <br><br>
+    
+    <div style="width:100vw; background-color: seagreen; height:30px; padding: 3%;">Total plantado: ${batHec} hectares (R$ ${batValTotal})</div>
+    
+    <div style="width:90vw;background-color: rgb(20, 95, 145); height:30px; padding: 3%;">Colheita Útil: ${batHec*0.96} hectares (R$ ${batVal96pct})</div>
+    
+    <div style="width:10vw;background-color: red; max-height:200px;">Desperdício: ${desperdicioVegCare} hectares (R$ ${batValDesperVegCare})</div><br>
+
+    
+    `
+    }
+</script>
+
+
