@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VegCare</title>
+</head>
+<body style='background-color: chocolate; color: darkgreen; font-size: 20px;'>
+    <center>
+        <br><br><br><br>
+        <b style="font-size: 55px;">Simulador Financeiro da VegCare:</b>
+        <br><br>
+        <b style="font-size: 35px;">Qual o terreno disponível para plantio das batatas?</b>
+        <br><br><br>
+        <input id="terreno" placeholder="Quantidade de hectares" style="height: 30px; width: 145px;"> 
+        <br><br>
+        <b>(1 hectar= 100 m X 100 m= 10.000 m²)</b>
+        <br><br>
+        <button onclick="Resultado()" style="font-size: 25px;"><b>Dados de plantio</b></button>
+        <br><br>
+    </center>   
+    <br><br>
+    <b id="texto_introdutorio" style="font-size: 25px;"></b>
+    <br><br>
+
+    <span id="sem_vegcare" style="font-size: 25px;"></span>
+    <br><br>
+    <center>
+        <div style="width: 1200px;">
+            <div id="barra_qtd_batatas" style="height: 100px;"></div>
+            <div id="barra_util" style="height: 100px; float: left;"></div>
+            <div id="barra_desperdicio" style="height: 100px; float:right"></div>
+        </div>
+    </center>
+    <br><br><br>
+
+    <span id="com_vegcare" style="font-size: 25px;"></span>
+    <br><br>
+    <center>
+        <div style="width: 1200px;">
+            <div id="barra_qtd_batatas_CVC" style="height: 100px;"></div>
+            <div id="barra_util_CVC" style="height: 100px; float: left;"></div>
+            <div id="barra_desperdicio_CVC" style="height: 100px; float:right"></div>
+        </div>
+    </center>
+    <br><br>
+
+    <center>
+        <span id="beneficios_CVC" style="font-size: 35px;"></span> 
+        <!--benefícios com a Vegcare-->
+    </center>   
+</body>
+</html>
+
+<script>
+    function Resultado(){
+        texto_introdutorio.innerHTML=`<b>
+            Consideream-se alguns fatores imporantes para os gráficos:
+            <br><br>
+            1) Um hectare de batata gera normalmente 25 toneladas de batatas por safra, podendo variar para 30 ou até 40 dependendo de variáveis múltiplas;
+            <br>
+            2) O preço-médio do quilo do tubérculo gira por volta de R$6,00;
+            <br>
+            3) No mínimo 10% da produção é desperdiçada nas fases iniciais da colheita.
+            <br><br>
+        </b>`;
+        
+        //Valores de produção geral:
+        var hectares= Number(terreno.value);
+        var qtd_batatas= hectares*25;
+        var desperdicio= qtd_batatas*0.1;
+        var util= qtd_batatas*0.9;
+
+        //Valores de produção geral percentual:
+        var desperdicio_percentual= (desperdicio*100)/qtd_batatas;
+        var util_percentual= (util*100)/qtd_batatas;
+
+        //Produção geral transformada em dinheiro:
+        var qtd_batatas_reais= qtd_batatas*6000; //1 kg=R$6,00, logo, 1 ton=R$6000,00
+        var desperdicio_reais= desperdicio*6000;
+        var util_reais= util*6000;
+
+        //Valores de produção com VegCare:
+        var desperdicio_CVC= qtd_batatas*0.04; //Com VegCare
+        var util_CVC= qtd_batatas*0.96;
+
+        //Valores de produção com VegCare percentual:
+        var desperdicio_percentual_CVC= (desperdicio_CVC*100)/qtd_batatas;
+        var util_percentual_CVC= (util_CVC*100)/qtd_batatas;
+
+        //Produção com VegCare transformada em dinheiro:
+        var desperdicio_reais_CVC= desperdicio_CVC*6000;
+        var util_reais_CVC= util_CVC*6000;
+
+        sem_vegcare.innerHTML=`<b><u>*Legenda:</u> <b style='color: purple'>Produção Total</b> / <b style='color: darkblue'>Útil</b> / <b style='color: darkred'>Desperdício</b>
+        <br><br>
+        <u>Sem VegCare</u>, havendo ${hectares} hectares plantáveis, pode-se obter <b style='color: purple'>${qtd_batatas}</b> (R$ <b style='color: purple'>${qtd_batatas_reais}</b>) tonelada(s) de batatas por safra, das quais <b style='color: darkblue'>${util}</b> (R$ <b style='color: darkblue'>${util_reais}</b>) seriam aproveitadas e <b style='color: darkred'>${desperdicio}</b> (R$ <b style='color: darkred'>${desperdicio_reais}</b>) seriam jogadas fora.</b>`;
+
+        //gráfico de barras horizontal:
+        barra_qtd_batatas.style.width='100%';
+        barra_qtd_batatas.style.backgroundColor='purple';
+        barra_util.style.width=`${util_percentual}%`;
+        barra_util.style.backgroundColor='darkblue';
+        barra_desperdicio.style.width=`${desperdicio_percentual}%`;
+        barra_desperdicio.style.backgroundColor='darkred';
+
+        com_vegcare.innerHTML=`<br><b><u>Com VegCare</u>, até 60% do desperdício pode ser evitado, ou seja, havendo ${hectares} hectares plantáveis, pode-se obter <b style='color: purple'>${qtd_batatas}</b> (R$ <b style='color: purple'>${qtd_batatas_reais}</b>) tonelada(s) de batatas por safra, das quais <b style='color: darkblue'>${util_CVC}</b> (R$ <b style='color: darkblue'>${util_reais_CVC}</b>) seriam aproveitadas e <b style='color: darkred'>${desperdicio_CVC}</b> (R$ <b style='color: darkred'>${desperdicio_reais_CVC}</b>) seriam jogadas fora.</b>`;
+
+        //gráfico de barras horizontal com VegCare:
+        barra_qtd_batatas_CVC.style.width='100%';
+        barra_qtd_batatas_CVC.style.backgroundColor='purple'
+        barra_util_CVC.style.width=`${util_percentual_CVC}%`;
+        barra_util_CVC.style.backgroundColor='darkblue';
+        barra_desperdicio_CVC.style.width=`${desperdicio_percentual_CVC}%`;
+        barra_desperdicio_CVC.style.backgroundColor='darkred';
+
+        //Valores do Benefícios com VegCare:
+        var lucro= util_reais_CVC-util_reais;
+        var producao_adicional= util_CVC-util;
+
+        //Benefícios com a VegCare:
+        beneficios_CVC.innerHTML=`<br><b>
+            *Produção a mais: ${producao_adicional} toneladas<br>
+            *Lucro: R$ ${lucro}
+        </b>`;
+
+    }
+</script>
